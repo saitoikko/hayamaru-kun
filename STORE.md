@@ -86,7 +86,68 @@ ZIPを作る際に除外しても構いません）。
   通信を行うコードは1行も含まれていません。
   収集も送信も共有も一切ありません。設定はあなたのパソコンの中だけに
   保存されます。ソースコードはMITライセンスで公開しています。
+
+
+--------------------------------------------------------------------
+
+Set a playback speed once, and keep it — with per-playlist exceptions.
+
+Control video playback speed with a slider, presets, or the keyboard.
+
+■ What makes this different: per-playlist exclusion
+
+  "I watch everything at 1.8x, but I want music playlists at normal
+  speed." Doing that video by video is tedious.
+
+  With this extension you open a playlist, click the toolbar icon, and
+  tick one checkbox. From then on, every video in that playlist plays at
+  the speed you chose (1.00x by default), automatically. You register it
+  once.
+
+  Excluded playlists are listed in the popup. Rename or remove them with
+  a single click.
+
+■ How the speed is decided (top wins)
+
+  1. This video only
+  2. Excluded playlist
+  3. This playlist
+  4. This site
+  5. Global default
+
+  Different speeds are remembered per site, per playlist and per video.
+
+■ Controls
+
+  - Toolbar popup: slider (logarithmic), presets, fine +/- buttons
+  - Keyboard
+      D  faster (+0.25)
+      S  slower (-0.25)
+      R  reset to 1.0x
+      Z  back 10 seconds
+      X  forward 10 seconds
+
+  Keys are ignored while you are typing in a text field, and while an
+  IME composition is active, so you will never change the speed by
+  accident while searching or commenting.
+
+■ Other
+
+  - 0.25x to 16x (browsers mute audio above 4x)
+  - Works in embedded iframes
+  - Speed is shown briefly in the top-left corner, including fullscreen
+  - The toolbar badge shows the current rate
+  - Follows your light / dark theme
+
+■ Privacy
+
+  This extension contains no networking code at all. Nothing is
+  collected, sent or shared. Your settings are stored only on your own
+  computer. The full source is published under the MIT license.
 ```
+
+> 上の詳細説明は「日本語 → 区切り線 → 英語」の順に1つの欄へまとめて貼ります。
+> 参考にした既存拡張（Video Speed Controller Global）と同じ形式です。
 
 ---
 
