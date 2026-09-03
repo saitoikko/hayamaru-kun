@@ -17,6 +17,9 @@ ZIPを作る際に除外しても構いません）。
 | 言語 | 日本語 |
 | 価格 | 無料 |
 | **Trader申告** | **Non-Trader（非事業者）** |
+| **プライバシーポリシーURL** | `https://saitoikko.github.io/hayamaru-kun/privacy.html` |
+| ホームページURL | `https://github.com/saitoikko/hayamaru-kun` |
+| サポートURL | `https://github.com/saitoikko/hayamaru-kun/issues` |
 
 > Non-Trader を選ぶと、氏名・住所・電話番号は公開されません。
 > 事業として提供する場合は Trader となり、これらが掲載ページ下部に公開されます。
@@ -155,16 +158,22 @@ ZIPを作る際に除外しても構いません）。
 - 信用調査や融資目的でデータを使用または転送しない
 - 第三者に販売しない
 
-**プライバシーポリシーURL**: `PRIVACY.md` をウェブ上に置いて、そのURLを入力します。
-（例: RED MOUNTAIN のサイト内に HTML として設置する）
+**プライバシーポリシーURL**（設置済み）
+
+```
+https://saitoikko.github.io/hayamaru-kun/privacy.html
+```
+
+GitHub Pages（`main` ブランチの `/docs` フォルダ）で公開しています。
+本文を直すときは `docs/privacy.html` を編集して push すれば自動で反映されます。
 
 ---
 
 ## 6. 提出前チェックリスト
 
-- [ ] `icons/` に 16 / 32 / 48 / 128 px の PNG を配置し、manifest.json に `icons` を追記した
+- [x] `icons/` に 16 / 32 / 48 / 128 px の PNG を配置し、manifest.json に `icons` を追記した
 - [ ] スクリーンショットを1枚以上用意した（1280×800 または 640×400）
-- [ ] プライバシーポリシーをウェブ上に公開し、URLを控えた
+- [x] プライバシーポリシーをウェブ上に公開し、URLを控えた
 - [ ] `STORE.md` を除いたフォルダをZIPにした
       （ZIPの直下に manifest.json が来るようにすること。フォルダごと圧縮しない）
 - [ ] Chromeウェブストアのデベロッパー登録を済ませた
