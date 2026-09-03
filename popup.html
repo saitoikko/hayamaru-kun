@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>早丸君</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="head">
+    <button id="power" class="power" type="button" title="この拡張の有効 / 無効">&#9211;</button>
+    <span class="brand">早丸君</span>
+    <span id="headRate" class="head-rate">1.00x</span>
+  </header>
+
+  <section class="presets" id="presets"></section>
+
+  <section class="slider-box">
+    <div class="ticks" id="ticks"></div>
+    <div class="slider-line">
+      <div class="mute-mark" id="muteMark"></div>
+      <input id="slider" class="slider" type="range" min="0" max="1000" step="1" value="500">
+    </div>
+    <div class="slider-note">目盛りは対数。<span class="mute-note">4.0倍より右は音声が出ません</span></div>
+  </section>
+
+  <section class="steps">
+    <button class="step" type="button" data-delta="-0.5" title="-0.5">&laquo;</button>
+    <button class="step" type="button" data-delta="-0.1" title="-0.1">&lsaquo;</button>
+    <input id="rateInput" class="rate-input" type="text" inputmode="decimal" value="1.00">
+    <button class="step" type="button" data-delta="0.1" title="+0.1">&rsaquo;</button>
+    <button class="step" type="button" data-delta="0.5" title="+0.5">&raquo;</button>
+  </section>
+
+  <section class="block">
+    <div class="block-title">この速度を適用する範囲</div>
+    <div id="scopeList" class="scope-list"></div>
+  </section>
+
+  <section class="block" id="excludeBlock" hidden>
+    <div class="block-title">プレイリストの除外</div>
+    <label class="check-row">
+      <input id="excludeToggle" type="checkbox">
+      <span id="excludeLabel">このプレイリストを除外する</span>
+    </label>
+    <div class="exclude-detail">
+      <span>除外中の再生速度</span>
+      <input id="excludeRate" class="mini-input" type="text" inputmode="decimal" value="1.00">
+      <span>x</span>
+    </div>
+    <div id="bulkNote" class="note"></div>
+  </section>
+
+  <section class="block">
+    <div class="block-title">
+      除外中のプレイリスト <span id="excludedCount" class="count">(0件)</span>
+    </div>
+    <div id="excludedList" class="excluded-list"></div>
+  </section>
+
+  <footer class="foot">
+    <span>D +0.25 / S -0.25 / R 等倍 / Z -10秒 / X +10秒</span>
+    <button id="resetAll" class="link-btn" type="button">全設定を初期化</button>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>

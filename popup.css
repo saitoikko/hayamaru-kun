@@ -1,0 +1,320 @@
+/* Video Speed Controller (Personal) — ポップアップの見た目 */
+
+:root {
+  --bg: #ffffff;
+  --fg: #202124;
+  --sub: #5f6368;
+  --line: #e0e0e0;
+  --accent: #1a73e8;
+  --accent-weak: #e8f0fe;
+  --danger: #d93025;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #202124;
+    --fg: #e8eaed;
+    --sub: #9aa0a6;
+    --line: #3c4043;
+    --accent: #8ab4f8;
+    --accent-weak: #283142;
+    --danger: #f28b82;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  width: 340px;
+  margin: 0;
+  padding: 0 0 8px;
+  background: var(--bg);
+  color: var(--fg);
+  font: 13px/1.5 system-ui, "Segoe UI", "Meiryo", sans-serif;
+}
+
+/* ---------- ヘッダー ---------- */
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.power {
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--accent);
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.power.off { color: var(--sub); background: var(--line); }
+
+.brand { font-weight: 600; }
+
+.head-rate {
+  margin-left: auto;
+  font-size: 18px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+}
+
+.head-rate.off { color: var(--sub); }
+
+/* ---------- プリセット ---------- */
+
+.presets {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  padding: 10px 12px 4px;
+}
+
+.presets button {
+  padding: 7px 0;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--fg);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+
+.presets button:hover { background: var(--accent-weak); }
+.presets button.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.presets button.mute-range { color: var(--danger); }
+.presets button.mute-range.active { color: #fff; }
+
+/* ---------- スライダー ---------- */
+
+.slider-box { padding: 8px 12px 4px; }
+
+.ticks {
+  position: relative;
+  height: 14px;
+  font-size: 10px;
+  color: var(--sub);
+}
+
+.ticks span {
+  position: absolute;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.slider-line { position: relative; }
+
+.mute-mark {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  width: 1px;
+  background: var(--danger);
+  opacity: .5;
+  pointer-events: none;
+}
+
+.slider { width: 100%; margin: 0; accent-color: var(--accent); }
+
+.slider-note { font-size: 10px; color: var(--sub); padding-top: 2px; }
+.mute-note { color: var(--danger); }
+
+/* ---------- ± ボタン ---------- */
+
+.steps {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px 10px;
+}
+
+.step {
+  flex: 1;
+  padding: 6px 0;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--fg);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.step:hover { background: var(--accent-weak); }
+
+.rate-input {
+  flex: 1.6;
+  padding: 6px 0;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--fg);
+  font-size: 14px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+/* ---------- 共通ブロック ---------- */
+
+.block { padding: 8px 12px; border-top: 1px solid var(--line); }
+
+.block-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--sub);
+  margin-bottom: 6px;
+}
+
+.count { font-weight: 400; }
+
+.note { font-size: 11px; color: var(--sub); margin-top: 4px; }
+
+/* ---------- 適用範囲 ---------- */
+
+.scope-list { display: flex; flex-direction: column; gap: 2px; }
+
+.scope-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.scope-row:hover { background: var(--accent-weak); }
+.scope-row.selected { background: var(--accent-weak); }
+
+.scope-main { flex: 1; min-width: 0; }
+
+.scope-name {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.scope-sub {
+  display: block;
+  font-size: 10px;
+  color: var(--sub);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.scope-val {
+  font-variant-numeric: tabular-nums;
+  font-size: 12px;
+  color: var(--sub);
+}
+
+.scope-val.set { color: var(--accent); font-weight: 600; }
+
+.x-btn {
+  border: none;
+  background: transparent;
+  color: var(--sub);
+  font-size: 14px;
+  line-height: 1;
+  padding: 2px 4px;
+  cursor: pointer;
+  visibility: hidden;
+}
+
+.x-btn.show { visibility: visible; }
+.x-btn:hover { color: var(--danger); }
+
+/* ---------- 除外 ---------- */
+
+.check-row { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+
+.exclude-detail {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--sub);
+}
+
+.mini-input {
+  width: 52px;
+  padding: 3px 4px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--fg);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.excluded-list { display: flex; flex-direction: column; gap: 4px; }
+
+.ex-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 6px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+.ex-row.current { border-color: var(--accent); background: var(--accent-weak); }
+
+.ex-main { flex: 1; min-width: 0; }
+
+.ex-name {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: var(--fg);
+  font: inherit;
+  padding: 0;
+}
+
+.ex-name:focus { outline: 1px solid var(--accent); border-radius: 3px; }
+
+.ex-sub {
+  display: block;
+  font-size: 10px;
+  color: var(--sub);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.empty { font-size: 11px; color: var(--sub); padding: 4px 2px; }
+
+/* ---------- フッター ---------- */
+
+.foot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px 0;
+  border-top: 1px solid var(--line);
+  font-size: 10px;
+  color: var(--sub);
+}
+
+.link-btn {
+  margin-left: auto;
+  border: none;
+  background: transparent;
+  color: var(--sub);
+  font-size: 10px;
+  text-decoration: underline;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.link-btn:hover { color: var(--danger); }

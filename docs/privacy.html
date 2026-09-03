@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>プライバシーポリシー — スーパー動画再生早丸君</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1f2328;
+    --sub: #59636e;
+    --line: #d7dde3;
+    --accent: #0969da;
+    --mark: #f4f6f8;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16191d;
+      --fg: #e6edf3;
+      --sub: #9198a1;
+      --line: #30363d;
+      --accent: #6ea8ff;
+      --mark: #21262d;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0 20px 80px;
+    background: var(--bg);
+    color: var(--fg);
+    font: 16px/1.85 system-ui, "Hiragino Sans", "Noto Sans JP", "Meiryo", sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+  main { max-width: 760px; margin: 0 auto; }
+  header.top {
+    padding: 48px 0 24px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 32px;
+  }
+  h1 { font-size: 26px; line-height: 1.4; margin: 0 0 12px; }
+  h2 {
+    font-size: 19px;
+    margin: 44px 0 12px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+  }
+  h2:first-of-type { border-top: none; padding-top: 0; }
+  .meta { color: var(--sub); font-size: 14px; margin: 0; }
+  .lead {
+    background: var(--mark);
+    border-left: 3px solid var(--accent);
+    padding: 16px 20px;
+    margin: 0 0 8px;
+    border-radius: 0 6px 6px 0;
+  }
+  .lead strong { font-size: 17px; }
+  p { margin: 0 0 16px; }
+  ul { margin: 0 0 16px; padding-left: 1.4em; }
+  li { margin-bottom: 6px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 20px;
+    font-size: 15px;
+  }
+  th, td {
+    border: 1px solid var(--line);
+    padding: 9px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th { background: var(--mark); font-weight: 600; white-space: nowrap; }
+  code {
+    background: var(--mark);
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-family: ui-monospace, "Consolas", monospace;
+    font-size: .9em;
+  }
+  a { color: var(--accent); }
+  .table-wrap { overflow-x: auto; }
+  .lang-split {
+    margin-top: 72px;
+    padding-top: 8px;
+    border-top: 3px double var(--line);
+  }
+  footer {
+    margin-top: 64px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    color: var(--sub);
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+<main>
+
+<header class="top">
+  <h1>プライバシーポリシー<br>スーパー動画再生早丸君（Chrome 拡張機能）</h1>
+  <p class="meta">最終更新日: 2026年9月3日 ／ 提供者: UR_Ikko</p>
+</header>
+
+<p class="lead">
+  <strong>この拡張機能は、いかなる情報も収集・送信・共有しません。</strong><br>
+  通信を行うコードは1行も含まれていません。
+</p>
+
+<h2>1. 収集する情報</h2>
+<p><strong>ありません。</strong></p>
+<p>
+  開発者を含む第三者が、この拡張機能を通じて利用者の情報を受け取ることはありません。
+  アクセス解析、広告、クラッシュレポート、利用統計のたぐいも一切組み込んでいません。
+</p>
+
+<h2>2. 端末内に保存する情報</h2>
+<p>
+  利用者の設定を保存するため、以下をブラウザの拡張機能ストレージ（<code>chrome.storage.local</code>）に
+  保存します。<strong>保存先は利用者のパソコンの中だけ</strong>です。
+</p>
+<div class="table-wrap">
+<table>
+  <tr><th>保存する内容</th><th>目的</th></tr>
+  <tr><td>既定の再生速度</td><td>全体に適用する速度を覚えるため</td></tr>
+  <tr><td>利用者が設定したサイトのホスト名と速度</td><td>サイトごとの速度を覚えるため</td></tr>
+  <tr><td>利用者が設定した動画IDと速度</td><td>動画ごとの速度を覚えるため</td></tr>
+  <tr><td>利用者が登録したプレイリストIDと速度・名前</td><td>プレイリスト単位の除外を実現するため</td></tr>
+  <tr><td>除外プレイリストで再生された動画のID</td><td>プレイリスト経由でない開き方でも除外を効かせるため</td></tr>
+  <tr><td>直前に見ていたページのホスト名・動画ID・プレイリストID</td><td>ポップアップに現在の対象を表示するため</td></tr>
+  <tr><td>拡張機能の有効／無効の状態</td><td>利用者の選択を覚えるため</td></tr>
+</table>
+</div>
+<p>
+  これらはすべて<strong>利用者自身が設定した内容と、その設定を適用するために必要な最小限の識別子</strong>です。
+  閲覧したページのURL全体、ページの内容、検索語、入力内容、Cookie、認証情報は
+  <strong>一切読み取っていませんし、保存もしていません</strong>。
+</p>
+<p>
+  Chromeの同期機能は使用していません（<code>chrome.storage.sync</code> を使っていないため）。
+  保存された内容が他の端末やネットワーク上に出ることはありません。
+</p>
+
+<h2>3. 情報の送信・第三者提供</h2>
+<p><strong>行いません。</strong></p>
+<ul>
+  <li>外部サーバーへの送信はありません</li>
+  <li>第三者への提供・販売はありません</li>
+  <li>広告目的の利用はありません</li>
+  <li>開発者が利用者のデータを閲覧する手段はありません</li>
+</ul>
+
+<h2>4. 権限を要求する理由</h2>
+<div class="table-wrap">
+<table>
+  <tr><th>権限</th><th>理由</th></tr>
+  <tr>
+    <td><code>storage</code></td>
+    <td>上記の設定を利用者のパソコンに保存するため</td>
+  </tr>
+  <tr>
+    <td><code>activeTab</code></td>
+    <td>ツールバーのアイコンが押された瞬間だけ、開いているタブのURLを読み、
+        プレイリストIDと動画IDを取り出すため。押していない間は使用しません</td>
+  </tr>
+  <tr>
+    <td>すべてのサイトでの実行</td>
+    <td>動画はあらゆるサイトに存在するため。ページ内では
+        <code>&lt;video&gt;</code> 要素の再生速度の読み書きと、
+        URLのプレイリストID・動画IDの読み取りのみを行います</td>
+  </tr>
+</table>
+</div>
+
+<h2>5. 保存した情報の削除方法</h2>
+<ul>
+  <li>拡張機能のポップアップ下部にある「全設定を初期化」を押す</li>
+  <li>または <code>chrome://extensions</code> からこの拡張機能を削除する</li>
+</ul>
+<p>いずれの場合も、保存された内容は完全に消去されます。</p>
+
+<h2>6. ソースコード</h2>
+<p>
+  この拡張機能は MIT ライセンスで公開しています。
+  上記の内容はすべてソースコードで確認できます。
+</p>
+
+<h2>7. 本ポリシーの変更</h2>
+<p>変更する場合は、この文書の最終更新日を改めたうえで公開します。</p>
+
+<h2>8. 連絡先</h2>
+<p>X: <a href="https://x.com/UR_Ikko">@UR_Ikko</a></p>
+
+<div class="lang-split">
+<header class="top">
+  <h1>Privacy Policy<br>スーパー動画再生早丸君 (Super Video Speed) — Chrome Extension</h1>
+  <p class="meta">Last updated: September 3, 2026 ／ Provider: UR_Ikko</p>
+</header>
+
+<p class="lead">
+  <strong>This extension does not collect, transmit, or share any information.</strong><br>
+  It contains no networking code whatsoever.
+</p>
+
+<h2>Data stored on your device</h2>
+<p>
+  To remember your settings, the extension stores the following in
+  <code>chrome.storage.local</code>, which never leaves your computer:
+</p>
+<ul>
+  <li>Your default playback rate</li>
+  <li>Host names and rates you configured</li>
+  <li>Video IDs and rates you configured</li>
+  <li>Playlist IDs, rates and names you registered for exclusion</li>
+  <li>Video IDs seen while an excluded playlist was playing, so exclusion still
+      works when a video is opened outside the playlist</li>
+  <li>Host name, video ID and playlist ID of the page you last viewed, used to
+      show the current target in the popup</li>
+  <li>Whether the extension is enabled</li>
+</ul>
+<p>
+  Full page URLs, page content, search terms, keystrokes, cookies and
+  credentials are never read or stored. Chrome sync is not used.
+</p>
+
+<h2>Permissions</h2>
+<ul>
+  <li><code>storage</code> — save the settings listed above locally</li>
+  <li><code>activeTab</code> — read the URL of the current tab only at the moment
+      you click the toolbar icon, to extract the playlist ID and video ID</li>
+  <li>Access to all sites — videos exist on any site. On a page the extension
+      only reads and writes the playback rate of <code>&lt;video&gt;</code>
+      elements and reads the playlist/video ID from the URL</li>
+</ul>
+
+<h2>Deleting your data</h2>
+<p>
+  Use the reset button in the popup, or remove the extension from
+  <code>chrome://extensions</code>. Either action erases everything stored.
+</p>
+
+<h2>Contact</h2>
+<p>X: <a href="https://x.com/UR_Ikko">@UR_Ikko</a></p>
+</div>
+
+<footer>
+  スーパー動画再生早丸君 — MIT License — Copyright (c) 2026 UR_Ikko
+</footer>
+
+</main>
+</body>
+</html>

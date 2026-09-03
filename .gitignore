@@ -1,0 +1,17 @@
+# OS が作る不要ファイル
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# エディタ
+.vscode/
+.idea/
+*.swp
+
+# 配布物（提出のたびに作り直すので追跡しない）
+*.zip
+dist/
+
+# 作業用
+*.log
+tmp/

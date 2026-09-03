@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "スーパー動画再生早丸君",
+  "version": "1.0.0",
+  "description": "動画の再生速度をスライダーとキーで操作。YouTubeのプレイリスト単位で除外を登録でき、音楽リストだけ等倍にできます。外部通信なし。",
+  "permissions": ["storage", "activeTab"],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "スーパー動画再生早丸君",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "all_frames": true,
+      "match_about_blank": true,
+      "run_at": "document_idle"
+    }
+  ]
+}
