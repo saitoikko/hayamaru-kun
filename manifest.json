@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "スーパー動画再生早丸君",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "動画の再生速度をスライダーとキーで操作。YouTubeのプレイリスト単位で除外を登録でき、音楽リストだけ等倍にできます。外部通信なし。",
   "permissions": ["storage", "activeTab"],
   "icons": {
