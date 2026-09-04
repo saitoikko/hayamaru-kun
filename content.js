@@ -428,7 +428,8 @@
   window.addEventListener('focus', publishContext);
 
   chrome.storage.onChanged.addListener((changes, area) => {
-    if (area !== 'local') return;
+    if (dead || area !== 'local') return;
+    try {
     const keys = Object.keys(changes);
     for (const key of keys) {
       if (key in DEFAULTS) {
@@ -438,6 +439,7 @@
     }
     if (changes.bulkRequest) handleBulkRequest(changes.bulkRequest.newValue);
     applyRate(false);
+    } catch (e) { teardown(); }
   });
 
   /* ------------------------------------------------------------------
@@ -446,6 +448,7 @@
 
   try {
   chrome.storage.local.get(null, (stored) => {
+    try {
     if (chrome.runtime.lastError) { teardown(); return; }
     settings = Object.assign({}, DEFAULTS, stored || {});
     ctx = parseContext();
@@ -455,6 +458,7 @@
     publishContext();
     setTimeout(publishContext, 1500);
     setTimeout(publishContext, 4000);
+    } catch (e) { teardown(); }
   });
   } catch (e) { teardown(); }
 })();
