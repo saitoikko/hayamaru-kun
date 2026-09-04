@@ -42,6 +42,41 @@
     Math.min(MAX_RATE, Math.max(MIN_RATE, Math.round(Number(r) * 100) / 100));
 
   /* ------------------------------------------------------------------
+   * 拡張が更新・再読み込み・削除されると、既に開いているページに残った
+   * このスクリプトは chrome.* を使えなくなる（コンテキストの無効化）。
+   * そのまま動き続けるとエラーを出し続けるので、検知したら自分を止める。
+   * ------------------------------------------------------------------ */
+
+  let dead = false;
+
+  function contextAlive() {
+    try {
+      return !!(chrome && chrome.runtime && chrome.runtime.id && chrome.storage);
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function teardown() {
+    if (dead) return;
+    dead = true;
+    try { observer.disconnect(); } catch (e) {}
+    try { window.removeEventListener('keydown', onKeyDown, true); } catch (e) {}
+    try { if (osdEl) osdEl.remove(); } catch (e) {}
+  }
+
+  /* 保存はすべてこの関数を通す */
+  function storageSet(patch) {
+    if (dead) return;
+    if (!contextAlive()) { teardown(); return; }
+    try {
+      chrome.storage.local.set(patch);
+    } catch (e) {
+      teardown();
+    }
+  }
+
+  /* ------------------------------------------------------------------
    * 現在のページの文脈（サイト / 動画ID / プレイリストID）
    * ------------------------------------------------------------------ */
 
@@ -123,6 +158,7 @@
   };
 
   function applyRate(withOsd) {
+    if (dead) return;
     if (!settings.enabled) {
       report();
       return;
@@ -140,7 +176,8 @@
   }
 
   function report() {
-    if (!isTop) return;
+    if (!isTop || dead) return;
+    if (!contextAlive()) { teardown(); return; }
     try {
       const p = chrome.runtime.sendMessage({
         type: 'rate',
@@ -148,7 +185,7 @@
         enabled: settings.enabled
       });
       if (p && typeof p.catch === 'function') p.catch(() => {});
-    } catch (e) { /* 拡張の再読み込み直後などは無視 */ }
+    } catch (e) { teardown(); }
   }
 
   /* プレイヤーが勝手に速度を戻すことがあるので、設定値へ引き戻す */
@@ -196,7 +233,7 @@
       s.defaultRate = rate;
       patch.defaultRate = rate;
     }
-    chrome.storage.local.set(patch);
+    storageSet(patch);
     applyRate(true);
   }
 
@@ -210,15 +247,15 @@
     if (!settings.excluded[playlistId]) return;
     if (settings.videoPlaylist[videoId] === playlistId) return;
     settings.videoPlaylist[videoId] = playlistId;
-    chrome.storage.local.set({ videoPlaylist: settings.videoPlaylist });
+    storageSet({ videoPlaylist: settings.videoPlaylist });
   }
 
   /* 現在の文脈をポップアップへ渡す（ポップアップは DOM を読めないため）。
    * URL 全体は保存しない。機能に必要なのはホスト名・動画ID・プレイリストIDだけで、
    * URL を残すと閲覧履歴を保持することになるため。 */
   function publishContext() {
-    if (!isTop) return;
-    chrome.storage.local.set({
+    if (!isTop || dead) return;
+    storageSet({
       lastContext: {
         host: ctx.host,
         videoId: ctx.videoId,
@@ -256,7 +293,7 @@
     const map = Object.assign({}, settings.videoPlaylist);
     ids.forEach((id) => { map[id] = req.playlistId; });
     settings.videoPlaylist = map;
-    chrome.storage.local.set({
+    storageSet({
       videoPlaylist: map,
       bulkResult: { playlistId: req.playlistId, count: ids.size, ts: Date.now() }
     });
@@ -300,7 +337,7 @@
   }
 
   function onKeyDown(e) {
-    if (!ready || !settings.enabled || !settings.keysEnabled) return;
+    if (dead || !ready || !settings.enabled || !settings.keysEnabled) return;
     if (e.ctrlKey || e.altKey || e.metaKey) return;      // ブラウザ標準の操作を邪魔しない
     if (e.isComposing || e.keyCode === 229) return;      // 日本語入力の変換中
     if (isTypingTarget(deepActiveElement())) return;     // 入力欄では無効
@@ -374,6 +411,7 @@
     scheduled = true;
     requestAnimationFrame(() => {
       scheduled = false;
+      if (dead) return;
       checkUrl();
       syncVideos();
     });
@@ -406,7 +444,9 @@
    * 起動
    * ------------------------------------------------------------------ */
 
+  try {
   chrome.storage.local.get(null, (stored) => {
+    if (chrome.runtime.lastError) { teardown(); return; }
     settings = Object.assign({}, DEFAULTS, stored || {});
     ctx = parseContext();
     ready = true;
@@ -416,4 +456,5 @@
     setTimeout(publishContext, 1500);
     setTimeout(publishContext, 4000);
   });
+  } catch (e) { teardown(); }
 })();
